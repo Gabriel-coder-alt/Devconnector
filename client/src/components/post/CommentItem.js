@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { removeComment } from '../../actions/post';
 import { connect } from 'react-redux';
-import Moment from 'react-moment';
+import formatDate from '../../utils/formatDate';
 
 const CommentItem = ({ comment: { _id, user, text, avatar, name, date }, postId, auth, removeComment }) => {
     return (
@@ -22,7 +22,7 @@ const CommentItem = ({ comment: { _id, user, text, avatar, name, date }, postId,
               {text}
             </p>
              <p className="post-date">
-                Posted on <Moment format='YYYY/MM/DD'>{date}</Moment>
+                Posted on {formatDate(date)}
             </p>
             {!auth.loading && auth.user._id === user && (
                 <button className='btn btn-danger' onClick={e => removeComment(postId, _id)}>

@@ -1,16 +1,16 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import Moment from 'react-moment';
 import PropTypes from 'prop-types';
 import { deleteEducation } from '../../actions/profile';
+import formatDate from '../../utils/formatDate';
 
 const Education = ({ education , deleteEducation }) => {
     const educations = education.map( edu => (
         <tr key={edu._id}>
             <td>{edu.school}</td>
             <td className="hide-sm">{edu.degree}</td>
-            <td><Moment format="YYYY/MM/DD">{edu.from}</Moment> -{' '}
-            {edu.to === null ? (' Now'): (<Moment format="YYYY/MM/DD">{edu.to}</Moment>)}
+            <td>{formatDate(edu.from)} -{' '}
+            {edu.to === null ? (' Now'): formatDate(edu.to)}
             </td>
             <td>
                 <button className="btn btn-danger" onClick={() => deleteEducation(edu._id)}>delete</button>

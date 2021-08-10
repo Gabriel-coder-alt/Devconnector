@@ -1,6 +1,5 @@
 const express = require('express');
 const connectDB = require('./config/db');
-const cors = require('cors');
 const path = require('path');
 
 const app = express();
@@ -8,12 +7,8 @@ const app = express();
 //Connect Database
 connectDB();
 
-// Use cors
-app.use(cors());
-
-
 // Init Middleware
-app.use(express.json({ extended: false }));
+app.use(express.json());
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
